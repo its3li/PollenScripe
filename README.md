@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="PollenScripe.ico" alt="PollenScribe icon" width="120" height="120">
+  <img src="PollenScripe.png" alt="PollenScribe icon" width="120" height="120">
 </p>
 
 <h1 align="center">PollenScribe</h1>
