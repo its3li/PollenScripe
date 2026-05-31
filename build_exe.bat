@@ -9,12 +9,14 @@ if not exist .venv\Scripts\python.exe (
 )
 
 echo Building PollenScribe.exe...
-".venv\Scripts\python.exe" -m PyInstaller --noconfirm --clean --onefile --windowed --name PollenScribe pollenscribe.py
+".venv\Scripts\python.exe" -m PyInstaller --noconfirm --clean --onefile --windowed --name PollenScribe --icon PollenScripe.ico pollenscribe.py
 if errorlevel 1 goto fail
 
 if exist .env (
   copy .env dist\.env >nul
   echo Copied .env to dist\.env for local testing. Do not publish dist\.env.
+) else (
+  echo No .env found. Create one next to dist\PollenScribe.exe before running the exe.
 )
 
 echo.

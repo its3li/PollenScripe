@@ -13,10 +13,22 @@ PollenScribe is a lightweight Windows dictation utility. Press a hotkey, speak, 
 
 ## Requirements
 
-- Windows 10/11
 - Python 3.10+
 - A working microphone
-- A Pollinations/OpenAI-compatible API key
+- A Pollinations API key
+
+## Quick install / use the released `.exe`
+
+If you download or publish `PollenScribe.exe`, put a real `.env` file in the exact same folder as the executable:
+
+```text
+PollenScribe.exe
+.env
+```
+
+This is required because the packaged app loads configuration from the folder it runs in. If `.env` is missing or somewhere else, transcription will fail with `POLLINATIONS_API_KEY is not set`.
+
+Do not publish a real `.env` with secrets. Publish `.env.example`, then have each user copy it to `.env` and add their own API key.
 
 ## Quick install from source
 
@@ -65,6 +77,16 @@ dist\PollenScribe.exe
 
 Put your `.env` file next to `PollenScribe.exe` if you run the executable from `dist`.
 
+The build uses `PollenScripe.ico` as the Windows executable icon. Keep that icon file in the repo root before running the build.
+
+Release checklist:
+
+- Build or publish `PollenScribe.exe`.
+- Include `.env.example` for users.
+- Tell users to create their own `.env` from `.env.example`.
+- Tell users the final `.env` must be next to `PollenScribe.exe`.
+- Do not publish your real `.env` or API key.
+
 ## Start automatically when Windows opens
 
 After building the `.exe`, run:
@@ -93,14 +115,10 @@ Create a `.env` file from `.env.example`.
 | `POLLENSCRIBE_SILENCE_THRESHOLD` | No | `500` | Higher trims silence more aggressively. |
 | `POLLENSCRIBE_TRIM_PADDING_MS` | No | `250` | Speech padding kept around detected audio. |
 
-## Security notes before publishing
-
-- Do not commit your real `.env` file.
-- If you pasted or exposed a real API key anywhere, rotate it before publishing.
-- Keep `.env.example`; it is safe because it contains placeholders only.
 
 ## Troubleshooting
 
 - If global hotkeys do not work, try running the terminal/app as Administrator.
 - If microphone capture fails, check Windows microphone permissions and your default input device.
-- If the app opens but transcription fails, verify `POLLINATIONS_API_KEY` and the base URL.
+- If the app opens but transcription fails, verify `POLLINATIONS_API_KEY`, the base URL, and that `.env` is in the same folder as the running `PollenScribe.exe`.
+- If the packaged exe has the wrong icon, confirm `PollenScripe.ico` exists before rebuilding.
