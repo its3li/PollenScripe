@@ -160,34 +160,6 @@ PollenScripe.ico
 
 ---
 
-## Release checklist
-
-Before publishing a new exe:
-
-- [ ] Build the exe with `build_exe.bat`.
-- [ ] Confirm `PollenScripe.ico` is in the repo root before building.
-- [ ] Confirm the exe launches locally.
-- [ ] Confirm `.env.example` is included.
-- [ ] Confirm your real `.env` is not included.
-- [ ] Tell users that `.env` must be beside the exe.
-- [ ] Upload the exe to GitHub Releases, not directly into git history.
-
-Recommended release folder shape:
-
-```text
-PollenScribe-V1.0.exe
-.env.example
-README.md
-redmi.md
-```
-
-User-created local runtime shape:
-
-```text
-PollenScribe-V1.0.exe
-.env
-```
-
 ---
 
 ## Start automatically with Windows
