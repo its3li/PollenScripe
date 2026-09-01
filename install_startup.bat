@@ -2,21 +2,25 @@
 setlocal
 cd /d "%~dp0"
 
-set "EXE=%~dp0dist\PollenScribe.exe"
+set "EXE=%~dp0dist\Pith.exe"
 set "STARTUP=%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup"
-set "SHORTCUT=%STARTUP%\PollenScribe.lnk"
+set "SHORTCUT=%STARTUP%\Pith.lnk"
 
 if not exist "%EXE%" (
-  echo dist\PollenScribe.exe was not found.
+  echo dist\Pith.exe was not found.
   echo Run build_exe.bat first.
   pause
   exit /b 1
 )
 
-powershell -NoProfile -ExecutionPolicy Bypass -Command "$shell = New-Object -ComObject WScript.Shell; $shortcut = $shell.CreateShortcut('%SHORTCUT%'); $shortcut.TargetPath = '%EXE%'; $shortcut.WorkingDirectory = '%~dp0dist'; $shortcut.WindowStyle = 7; $shortcut.Description = 'Start PollenScribe when Windows starts'; $shortcut.Save()"
+powershell -NoProfile -ExecutionPolicy Bypass -Command "$shell = New-Object -ComObject WScript.Shell; $shortcut = $shell.CreateShortcut('%SHORTCUT%'); $shortcut.TargetPath = '%EXE%'; $shortcut.WorkingDirectory = '%~dp0dist'; $shortcut.WindowStyle = 7; $shortcut.Description = 'Start Pith when Windows starts'; $shortcut.Save()"
 if errorlevel 1 goto fail
 
-echo PollenScribe will now start when you sign in to Windows.
+REM Drop the pre-rename shortcut, so upgrading does not leave two copies starting
+REM at sign-in.
+if exist "%STARTUP%\PollenScribe.lnk" del "%STARTUP%\PollenScribe.lnk"
+
+echo Pith will now start when you sign in to Windows.
 echo Shortcut: %SHORTCUT%
 pause
 exit /b 0

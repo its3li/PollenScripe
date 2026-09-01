@@ -1,12 +1,21 @@
 @echo off
 setlocal
-set "SHORTCUT=%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\PollenScribe.lnk"
+set "STARTUP=%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup"
+set "SHORTCUT=%STARTUP%\Pith.lnk"
+set "LEGACY=%STARTUP%\PollenScribe.lnk"
 
 if exist "%SHORTCUT%" (
   del "%SHORTCUT%"
-  echo Removed PollenScribe startup shortcut.
+  echo Removed Pith startup shortcut.
 ) else (
-  echo PollenScribe startup shortcut was not found.
+  echo Pith startup shortcut was not found.
+)
+
+REM Left behind by the pre-rename builds, and it points at an exe that no longer
+REM gets rebuilt, so a stale copy would start the old app every sign-in.
+if exist "%LEGACY%" (
+  del "%LEGACY%"
+  echo Removed the old PollenScribe startup shortcut too.
 )
 
 pause
