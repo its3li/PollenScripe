@@ -31,7 +31,7 @@ if not exist .env (
 
 echo.
 echo Setup complete.
-echo Run start.bat to launch PollenScribe.
+echo Run start.bat to launch Pith.
 pause
 exit /b 0
 

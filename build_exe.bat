@@ -8,19 +8,21 @@ if not exist .venv\Scripts\python.exe (
   if errorlevel 1 exit /b 1
 )
 
-echo Building PollenScribe.exe...
-".venv\Scripts\python.exe" -m PyInstaller --noconfirm --clean --onefile --windowed --name PollenScribe --icon PollenScripe.ico pollenscribe.py
+echo Building Pith.exe...
+REM --add-data bundles the tray icon, which the app loads at runtime rather than
+REM drawing; without it the packaged build falls back to a plain drawn icon.
+".venv\Scripts\python.exe" -m PyInstaller --noconfirm --clean --onefile --windowed --name Pith --icon pith.ico --add-data "pith.ico;." pith.py
 if errorlevel 1 goto fail
 
 if exist .env (
-  copy .env dist\.env >nul
-  echo Copied .env to dist\.env for local testing. Do not publish dist\.env.
+  echo Reminder: copy your .env next to dist\Pith.exe before running it.
+  echo This script no longer copies it for you, so a real key never lands in dist\.
 ) else (
-  echo No .env found. Create one next to dist\PollenScribe.exe before running the exe.
+  echo No .env found. Create one next to dist\Pith.exe before running the exe.
 )
 
 echo.
-echo Build complete: dist\PollenScribe.exe
+echo Build complete: dist\Pith.exe
 pause
 exit /b 0
 
