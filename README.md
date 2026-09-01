@@ -117,7 +117,7 @@ recording at all.
 
 Download the release exe from:
 
-https://github.com/its3li/pith/releases/tag/v1.0.0
+https://github.com/its3li/pith/releases/latest
 
 Then keep these files together in the same folder:
 
@@ -126,13 +126,18 @@ Pith-V2.0.exe
 .env
 ```
 
+> The download is named `Pith-V2.0.exe`. If you build it yourself with `build_exe.bat`
+> instead, you get `dist\Pith.exe` — same app, and either name works as long as `.env`
+> sits beside it.
+
 > [!IMPORTANT]
 > The `.env` file must be next to the `.exe`. If `.env` is missing or in another folder, transcription will fail with `GROQ_API_KEY is not set`.
 
-Create `.env` from `.env.example`:
+Create `.env` from the config template attached to the same release
+(`env-example.txt`, listed under the exe):
 
 ```powershell
-copy .env.example .env
+copy env-example.txt .env
 ```
 
 Then edit `.env` and add your real API key from [console.groq.com/keys](https://console.groq.com/keys):
