@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="pith.ico" alt="Pith icon" width="120" height="120">
+  <img src="pith.png" alt="Pith icon" width="120" height="120">
 </p>
 
 <h1 align="center">Pith</h1>
@@ -76,7 +76,7 @@ it costs no CPU when nothing is moving.
 | 🕘 History | Last few transcripts stay in the tray menu, click to re-copy |
 | 🪟 Overlay | Small floating control panel for status, pause, and cancel |
 | 🧭 Tray app | Runs in the system tray with show/hide and quit controls |
-| 🎨 Icon | Uses `pith.ico` for the tray, app, and release branding |
+| 🎨 Icon | Uses `pith.ico` for the tray and the exe, `pith.png` for this page |
 
 ---
 
@@ -209,35 +209,6 @@ pith.ico
 ```
 
 The suite covers silence trimming, upload encoding, the model fallback chains, and the cleanup pass. It needs neither a microphone nor an API key.
-
----
-
-## Release checklist
-
-Before publishing a new exe:
-
-- [ ] Build the exe with `build_exe.bat`.
-- [ ] Confirm `pith.ico` is in the repo root before building.
-- [ ] Confirm the exe launches locally and the tray shows the real icon.
-- [ ] Confirm `.env.example` is included.
-- [ ] Confirm your real `.env` is not included, and that `dist\.env` was not created.
-- [ ] Tell users that `.env` must be beside the exe.
-- [ ] Upload the exe to GitHub Releases, not directly into git history.
-
-Recommended release folder shape:
-
-```text
-Pith-V2.0.exe
-.env.example
-README.md
-```
-
-User-created local runtime shape:
-
-```text
-Pith-V2.0.exe
-.env
-```
 
 ---
 
@@ -424,7 +395,8 @@ If a real API key was exposed, rotate it before publishing another release.
 | `pith/status.py` | Thread-safe status plumbing and transcript history |
 | `pith/app.py` | Hotkeys, recording state, and the dictation pipeline |
 | `tests/` | Unit tests that need no microphone or API key |
-| `pith.ico` | App, tray, and README icon |
+| `pith.ico` | App and tray icon, bundled into the exe |
+| `pith.png` | The same icon in a format GitHub renders, for this README |
 | `build_exe.bat` | Builds the standalone exe |
 | `setup.bat` | Creates/install source environment |
 | `install_startup.bat` | Adds Windows startup shortcut |
